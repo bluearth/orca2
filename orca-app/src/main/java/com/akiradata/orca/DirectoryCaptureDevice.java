@@ -23,4 +23,25 @@ public class DirectoryCaptureDevice extends CaptureDevice {
 
 	}
 
+	@Override
+	public void release() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getName() {
+		return "Directory";
+	}
+
+	@Override
+	public String getVendor() {
+		return "Akiradata";
+	}
+
+	@Override
+	public String getDriverVersion() {
+		return "1.0";
+	}
+
 }

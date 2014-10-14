@@ -31,7 +31,9 @@ public class MainPane extends VBox {
 	@FXML private Button newProjectTlb;
 	@FXML private Button startCaptureTlb;
 	private Dialog newProjectDialog;
+	private Dialog captureDeviceSelectionDialog;
 	Stage currentStage;
+	CaptureDevice selectedDevice;
 	
 	public MainPane(){
 		super();
@@ -44,7 +46,7 @@ public class MainPane extends VBox {
 		init();
 	}
 
-	private void init() throws ApplicationRuntimeException {
+	private void init() {
 		try{
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
 			fxmlLoader.setRoot(this);
@@ -55,24 +57,28 @@ public class MainPane extends VBox {
 		}
 		this.newProjectMni.setOnAction(event -> createNewProjectAction());
 		this.newProjectTlb.setOnAction(event -> createNewProjectAction());
-	
 		this.startCaptureTlb.setOnAction(event -> startCaptureAction());
 	}
 	
 	
 	@FXML 
 	private void startCaptureAction() {
-		log.debug("Start capture");
+		if (this.selectedDevice == null){
+			showCaptureDeviceSelectionDialog();
+		}
+
+	}
+
+	private void showCaptureDeviceSelectionDialog() {
+		if (this.captureDeviceSelectionDialog == null){
+			this.captureDeviceSelectionDialog = new CaptureDeviceSelectionDialog(this, "Select capture device");
+		}
 		
-		log.debug("Enumerating capture device");
-		
-		log.debug("Make preset selection");
-		
-		log.debug("Check for device availability");
-		
-		log.debug("Capturing...");
-		
-		log.debug("Capture complete");
+		if (this.captureDeviceSelectionDialog.show() == Dialog.Actions.OK){
+			this.selectedDevice = ((CaptureDeviceSelectionDialog) this.captureDeviceSelectionDialog).getSelectedCaptureDevice();
+			this.selectedDevice.configure();		
+			this.selectedDevice.capture();
+		}
 	}
 
 	@FXML
@@ -107,11 +113,10 @@ public class MainPane extends VBox {
 					Action response = Dialogs
 							.create()
 							.title("New Project")
-							.masthead("Confim overwrite")
-							.message(
-									"Destination file "
-											+ projFile.getCanonicalPath()
-											+ " already exists. Confirm overwrite?")
+							.masthead("Confirm overwrite")
+							.message("Destination file "
+										+ projFile.getCanonicalPath()
+										+ " already exists. Confirm overwrite?")
 							.showConfirm();
 					if (response == Actions.OK) {
 						log.debug("User confirms overwrite.");

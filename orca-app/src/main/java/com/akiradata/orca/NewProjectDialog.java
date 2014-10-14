@@ -41,7 +41,7 @@ public class NewProjectDialog extends Dialog {
 			throw new ApplicationRuntimeException(e);
 		}
 		
-		setResizable(true);
+		setResizable(false);
 		setClosable(true);
 		setIconifiable(false);
 		
