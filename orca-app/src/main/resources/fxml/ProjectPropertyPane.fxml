@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="350.0" minWidth="300.0" prefHeight="350.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="General">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="15.0" layoutY="32.0" text="Title" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="32.0" />
+                        <Label layoutX="15.0" layoutY="61.0" text="Location" />
+                        <Label fx:id="projTitleTxt" layoutX="122.0" layoutY="32.0" prefHeight="17.0" prefWidth="164.0" />
+                        <Label fx:id="projLocTxt" layoutX="122.0" layoutY="61.0" prefHeight="17.0" prefWidth="164.0" text="Label" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

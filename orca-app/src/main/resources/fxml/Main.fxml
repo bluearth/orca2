@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Button?>
+
+
+<fx:root type="VBox" xmlns:fx="http://javafx.com/fxml"
+	prefHeight="500.0" prefWidth="700.0">
+	<children>
+		<MenuBar fx:id="mainMenuBar" xmlns:fx="http://javafx.com/fxml">
+			<menus>
+				<Menu id="fileMenu" text="_File">
+					<items>
+						<MenuItem fx:id="newProjectMni" text="_New..." accelerator="ctrl+n"/>
+						<MenuItem fx:id="openMenuItem" text="_Open..." accelerator="ctrl+o" />
+						<Menu id="openRecentMenu" text="Open _recent" disable="true" />
+						<MenuItem id="closeMenuItem" text="_Close" disable="true" />
+						<SeparatorMenuItem />
+						<MenuItem id="exitMenuItem" text="_Quit" accelerator="ctrl+q" />
+					</items>
+				</Menu>
+				<Menu id="editMenu" text="_Edit">
+					<items>
+						<MenuItem id="cutMenuItem" text="Cu_t" accelerator="ctrl+x"
+							disable="true" />
+						<MenuItem id="copyMenuItem" text="_Copy" accelerator="ctrl+c"
+							disable="true" />
+						<MenuItem id="pasteMenuItem" text="_Paste" accelerator="ctrl+v"
+							disable="true" />
+						<SeparatorMenuItem />
+						<MenuItem id="findMenuItem" text="_Find..." accelerator="ctrl+f" />
+					</items>
+				</Menu>
+				<Menu id="helpMenu" text="_Help">
+					<items>
+						<MenuItem id="openMenuItem" text="Open help..."
+							accelerator="F1" />
+						<SeparatorMenuItem />
+						<MenuItem id="aboutMenuItem" text="About..." />
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+		<BorderPane>
+			<top>
+				<ToolBar fx:id="mainToolBar" xmlns:fx="http://javafx.com/fxml">
+					<items>
+						<Button fx:id="newProjectTlb" text="New" onAction="#createNewProjectAction"/>
+						<Button id="openProjectTlb" text="Open"/>
+						<Button fx:id="startCaptureTlb" text="Capture"/>
+					</items>
+				</ToolBar>
+
+			</top>
+		</BorderPane>
+	</children>
+</fx:root>
+

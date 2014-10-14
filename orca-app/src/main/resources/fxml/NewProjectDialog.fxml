@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="100.0" prefWidth="560.0"
+	xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<Label layoutX="15.0" layoutY="15.0" prefHeight="17.0"
+			prefWidth="107.0" text="Project name" AnchorPane.leftAnchor="15.0"
+			AnchorPane.rightAnchor="443.0" AnchorPane.topAnchor="15.0" />
+		<Label layoutX="13.0" layoutY="55.0" prefHeight="17.0"
+			prefWidth="107.0" text="Location" AnchorPane.leftAnchor="15.0"
+			AnchorPane.topAnchor="55.0" />
+		<TextField fx:id="projectNameTxf" layoutX="110.0" layoutY="11.0"
+			prefHeight="25.0" prefWidth="417.0" AnchorPane.rightAnchor="15.0" />
+		<TextField fx:id="projectLocationTxf" layoutX="103.0"
+			layoutY="51.0" prefHeight="25.0" prefWidth="417.0"
+			AnchorPane.rightAnchor="15.0" />
+	</children>
+</AnchorPane>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Button?>
+<?import org.controlsfx.glyphfont.Glyph?>
+
+<ToolBar fx:id="mainToolBar" xmlns:fx="http://javafx.com/fxml">
+	<items>
+		<Button fx:id="newProjectTlb" text="New"></Button>
+		<Button id="openProjectTlb" text="Open"></Button>
+	</items>
+</ToolBar>
+
