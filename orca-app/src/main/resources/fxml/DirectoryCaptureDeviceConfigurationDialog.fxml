@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane maxHeight="100.0" maxWidth="500.0" minHeight="100.0" minWidth="400.0" prefHeight="100.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="Location" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
+      <Label layoutX="15.0" layoutY="46.0" text="File type" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="340.0" AnchorPane.topAnchor="50.0" />
+      <TextField fx:id="dirSourceLocationTxt" layoutX="77.0" layoutY="11.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="11.0" />
+      <ComboBox fx:id="dirSourceFileTypeFilterCbo" layoutX="80.0" layoutY="46.0" prefWidth="150.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="15.0" />
+   </children>
+</AnchorPane>
