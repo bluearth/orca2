@@ -3,3 +3,9 @@
 .classpath
 .settings/
 target/
+
+#Visual Studio Files
+*.suo
+*.sdf
+*.opensdf
+*.filters
