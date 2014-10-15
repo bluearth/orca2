@@ -131,7 +131,7 @@ BOOL WINAPI DllMain (HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
        // Append TWAIN_32.DLL to the path. This is the 32-bit TWAIN DLL that
        // we need to communicate with.
 
-       lstrcat (szPath, "TWAIN_32.DLL");
+	   lstrcat (szPath, "TWAIN_32.DLL");
 
        // If the TWAIN_32.DLL file exists in the path (which is determined by
        // opening and closing that file), attempt to load TWAIN_32.DLL into

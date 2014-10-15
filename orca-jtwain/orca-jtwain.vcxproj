@@ -66,11 +66,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)\target\MSBuild\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)\target\MSVC\Bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\target\MSVC\Build\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>orcajtwain</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)\target\MSVC\Bin\$(Platform)\$(Configuration)\</OutDir>
-    <TargetName>orcajtwain</TargetName>
+    <TargetName>orcajtwain$(PlatformArchitecture)</TargetName>
     <IntDir>$(SolutionDir)\target\MSVC\Build\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -78,6 +80,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\Program Files\Java\jdk1.8.0\include\win32;C:\Program Files\Java\jdk1.8.0\include;$(ProjectDir)\target\generated-sources\h\;$(ProjectDir)\src\main\h</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
