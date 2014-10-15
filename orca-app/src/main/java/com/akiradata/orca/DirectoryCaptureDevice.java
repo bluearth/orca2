@@ -7,20 +7,20 @@ public class DirectoryCaptureDevice extends CaptureDevice {
 
 	File rootDirectory;
 	List<String> imageFormat;
-	
+
 	@Override
 	public void capture() {
 
 	}
 
 	@Override
-	public void registerEventListener(CaptureDeviceEventListener listener) {
+	public void addEventListener(CaptureDeviceEventListener listener) {
 
 	}
 
 	@Override
 	public void configure() {
-
+		
 	}
 
 	@Override

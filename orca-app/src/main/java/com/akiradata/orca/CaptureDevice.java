@@ -15,7 +15,7 @@ public abstract class CaptureDevice {
 	
 	public abstract void capture();
 	
-	public abstract void registerEventListener(CaptureDeviceEventListener listener);
+	public abstract void addEventListener(CaptureDeviceEventListener listener);
 	
 	public abstract void release();
 	
