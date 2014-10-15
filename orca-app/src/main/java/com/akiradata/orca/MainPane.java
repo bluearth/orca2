@@ -23,6 +23,9 @@ import org.controlsfx.dialog.Dialogs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.akiradata.orca.capture.CaptureDevice;
+import com.akiradata.orca.capture.CaptureDeviceSelectionDialog;
+
 public class MainPane extends VBox {
 
 	final Logger log = LoggerFactory.getLogger(this.getClass());
