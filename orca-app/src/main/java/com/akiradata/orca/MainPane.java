@@ -3,6 +3,8 @@ package com.akiradata.orca;
 import java.io.File;
 import java.io.IOException;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -33,7 +35,8 @@ public class MainPane extends VBox {
 	private Dialog newProjectDialog;
 	private Dialog captureDeviceSelectionDialog;
 	Stage currentStage;
-	CaptureDevice selectedDevice;
+	ObjectProperty<CaptureDevice> selectedDevice = new SimpleObjectProperty<CaptureDevice>();
+
 	
 	public MainPane(){
 		super();
@@ -75,9 +78,10 @@ public class MainPane extends VBox {
 		}
 		
 		if (this.captureDeviceSelectionDialog.show() == Dialog.Actions.OK){
-			this.selectedDevice = ((CaptureDeviceSelectionDialog) this.captureDeviceSelectionDialog).getSelectedCaptureDevice();
-			this.selectedDevice.configure();		
-			this.selectedDevice.capture();
+			CaptureDevice d = ((CaptureDeviceSelectionDialog) this.captureDeviceSelectionDialog).getSelectedCaptureDevice();
+			this.selectedDevice.set(d);
+			d.configure();
+			d.capture();
 		}
 	}
 
