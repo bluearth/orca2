@@ -1,7 +1,6 @@
 package com.akiradata.orca;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -52,7 +51,7 @@ public class CaptureDeviceSelectionDialog extends Dialog {
 			throw new ApplicationRuntimeException(e);
 		}	
 		
-		setResizable(true);
+		setResizable(false);
 		setClosable(true);
 		setIconifiable(false);
 		setMasthead("Select capture device to use.");
