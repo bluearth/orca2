@@ -39,12 +39,6 @@ public class MainPane extends VBox {
 	private Dialog captureDeviceSelectionDialog;
 	Stage currentStage;
 	ObjectProperty<CaptureDevice> selectedDevice = new SimpleObjectProperty<CaptureDevice>();
-
-	
-	public MainPane(){
-		super();
-		init();		
-	}
 	
 	public MainPane(Stage s) {
 		super();
