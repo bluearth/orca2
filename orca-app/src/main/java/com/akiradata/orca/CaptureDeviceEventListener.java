@@ -12,4 +12,6 @@ public interface CaptureDeviceEventListener {
 	
 	public void captureException(CaptureDeviceEvent e);
 	
+	public void configurationRequested(CaptureDeviceEvent e);
+	
 }

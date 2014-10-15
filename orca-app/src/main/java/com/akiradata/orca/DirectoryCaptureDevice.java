@@ -3,6 +3,10 @@ package com.akiradata.orca;
 import java.io.File;
 import java.util.List;
 
+import org.controlsfx.dialog.Dialog;
+
+import com.akiradata.orca.CaptureDeviceEvent.Type;
+
 public class DirectoryCaptureDevice extends CaptureDevice {
 
 	File rootDirectory;
@@ -14,19 +18,18 @@ public class DirectoryCaptureDevice extends CaptureDevice {
 	}
 
 	@Override
-	public void addEventListener(CaptureDeviceEventListener listener) {
-
-	}
-
-	@Override
 	public void configure() {
-		
+		// check for some precondition. If not met, then yell out to listeners.
+		if (rootDirectory == null || !rootDirectory.canRead()
+				|| !rootDirectory.isDirectory()) {
+			fireEvent(new CaptureDeviceEvent(this, Type.CONFIG_REQUESTED));
+			return;
+		}
 	}
 
 	@Override
 	public void release() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -43,5 +46,13 @@ public class DirectoryCaptureDevice extends CaptureDevice {
 	public String getDriverVersion() {
 		return "1.0";
 	}
+
+	@Override
+	public Dialog createConfigurationDialog(Object owner) {
+		DirectoryCaptureDeviceConfigurationDialog d = new DirectoryCaptureDeviceConfigurationDialog(
+				owner, "Configure capture device");
+		return d;
+	}
+	
 
 }
