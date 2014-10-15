@@ -1,7 +1,9 @@
-package com.akiradata.orca;
+package com.akiradata.orca.capture;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.akiradata.orca.capture.directory.DirectoryCaptureDevice;
 
 public class CaptureDeviceManager {
 

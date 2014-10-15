@@ -1,4 +1,4 @@
-package com.akiradata.orca;
+package com.akiradata.orca.capture;
 
 import java.io.IOException;
 
@@ -14,6 +14,8 @@ import org.controlsfx.dialog.Dialog;
 import org.controlsfx.dialog.DialogStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.akiradata.orca.ApplicationRuntimeException;
 
 public class CaptureDeviceSelectionDialog extends Dialog {
 

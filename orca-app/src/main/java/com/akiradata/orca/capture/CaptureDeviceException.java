@@ -1,4 +1,4 @@
-package com.akiradata.orca;
+package com.akiradata.orca.capture;
 
 public class CaptureDeviceException extends Exception {
 
