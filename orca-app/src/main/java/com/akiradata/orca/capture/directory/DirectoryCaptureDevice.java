@@ -3,6 +3,10 @@ package com.akiradata.orca.capture.directory;
 import java.io.File;
 import java.util.List;
 
+import javafx.scene.Node;
+
+import org.controlsfx.dialog.Dialog;
+
 import com.akiradata.orca.capture.CaptureDevice;
 import com.akiradata.orca.capture.CaptureDeviceEventListener;
 
@@ -45,6 +49,12 @@ public class DirectoryCaptureDevice extends CaptureDevice {
 	@Override
 	public String getDriverVersion() {
 		return "1.0";
+	}
+
+	@Override
+	public Dialog createConfigurationDialog(Node owner) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

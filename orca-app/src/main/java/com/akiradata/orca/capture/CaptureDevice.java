@@ -1,5 +1,9 @@
 package com.akiradata.orca.capture;
 
+import javafx.scene.Node;
+
+import org.controlsfx.dialog.Dialog;
+
 public abstract class CaptureDevice {
 
 	public enum State {
@@ -37,4 +41,5 @@ public abstract class CaptureDevice {
 	
 	public abstract String getDriverVersion();
 	
+	public abstract Dialog createConfigurationDialog(Node owner);
 }

@@ -6,10 +6,12 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
+	Scene mainScene;
+	
 	@Override
 	public void start(Stage stage) throws Exception {
 		MainPane mainPane = new MainPane(stage);
-		Scene mainScene = new Scene(mainPane);
+		this.mainScene = new Scene(mainPane);
 //		stage.setMaximized(true);
 		stage.setTitle("Orca");
 		stage.setScene(mainScene);
@@ -20,4 +22,5 @@ public class App extends Application {
 	public static void main(String ... args) {
 		launch(args);
 	}
+	
 }

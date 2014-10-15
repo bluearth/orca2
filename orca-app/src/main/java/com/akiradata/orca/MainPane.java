@@ -24,9 +24,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.akiradata.orca.capture.CaptureDevice;
+import com.akiradata.orca.capture.CaptureDeviceEvent;
+import com.akiradata.orca.capture.CaptureDeviceEventListener;
 import com.akiradata.orca.capture.CaptureDeviceSelectionDialog;
 
-public class MainPane extends VBox {
+public class MainPane extends VBox implements CaptureDeviceEventListener {
 
 	final Logger log = LoggerFactory.getLogger(this.getClass());
 	
@@ -63,10 +65,11 @@ public class MainPane extends VBox {
 	
 	@FXML 
 	private void startCaptureAction() {
-		if (this.selectedDevice == null){
+		if (this.selectedDevice.get() == null){
 			showCaptureDeviceSelectionDialog();
+		}else{
+			
 		}
-
 	}
 
 	private void showCaptureDeviceSelectionDialog() {
@@ -138,6 +141,43 @@ public class MainPane extends VBox {
 
 	public void applicationCloseRequested() {
 		log.info("Closing...");
+	}
+
+	@Override
+	public void captureStarted(CaptureDeviceEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pageStarted(CaptureDeviceEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void pageCompleted(CaptureDeviceEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void captureCompleted(CaptureDeviceEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void captureException(CaptureDeviceEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void configurationRequested(CaptureDeviceEvent e) {
+		CaptureDevice activeDevice = this.selectedDevice.get();
+		Dialog d =	activeDevice.createConfigurationDialog(this);
+		d.show();
 	}
 	
 }
