@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -57,14 +58,14 @@ public class MainPane extends VBox implements CaptureDeviceEventListener {
 		}catch(IOException e){
 			throw new ApplicationRuntimeException(e);
 		}
-		this.newProjectMni.setOnAction(event -> createNewProjectAction());
-		this.newProjectTlb.setOnAction(event -> createNewProjectAction());
-		this.startCaptureTlb.setOnAction(event -> startCaptureAction());
+		this.newProjectMni.setOnAction(this::createNewProjectAction);
+		this.newProjectTlb.setOnAction(this::createNewProjectAction);
+		this.startCaptureTlb.setOnAction(this::startCaptureAction);
 	}
 	
 	
 	@FXML 
-	private void startCaptureAction() {
+	private void startCaptureAction(ActionEvent e) {
 		if (this.selectedDevice.get() == null){
 			showCaptureDeviceSelectionDialog();
 		}else{
@@ -86,7 +87,7 @@ public class MainPane extends VBox implements CaptureDeviceEventListener {
 	}
 
 	@FXML
-	private void createNewProjectAction() {
+	private void createNewProjectAction(ActionEvent e) {
 		try {
 			if (this.newProjectDialog == null) {
 				this.newProjectDialog = new NewProjectDialog(this,
@@ -134,8 +135,8 @@ public class MainPane extends VBox implements CaptureDeviceEventListener {
 						+ this.currentStage.getTitle());
 
 			}
-		} catch (IOException | JAXBException e) {
-			throw new ApplicationRuntimeException(e);
+		} catch (IOException | JAXBException ex) {
+			throw new ApplicationRuntimeException(ex);
 		}
 	}
 
