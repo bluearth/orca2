@@ -25,7 +25,7 @@
 			<xs:element ref="items" minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required" />
-		<xs:attribute name="name" type="xs:string" use="optional" />		
+		<xs:attribute name="label" type="xs:string" use="optional" />		
 	</xs:complexType>
 
 	<xs:complexType name="item-list-type">
@@ -58,10 +58,32 @@
 	
 	<xs:complexType name="segment-type">
 		<xs:sequence>
-			
+			<xs:element name="bound" minOccurs="1" maxOccurs="1">
+				<xs:complexType>
+					<xs:attribute name="x1" type="xs:double" use="required"/>
+					<xs:attribute name="y1" type="xs:double" use="required"/>
+					<xs:attribute name="x2" type="xs:double" use="required"/>
+					<xs:attribute name="y2" type="xs:double" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="colour" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"></xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="accessible-content">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="accessile-content-type">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required"/>
-		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="label" type="xs:string" use="optional"/>
 	</xs:complexType>
 	
 	<xs:element name="orca-project" type="orca-project-type" />
@@ -73,4 +95,5 @@
 	<xs:element name="content-length" type="content-length-type"/>
 	<xs:element name="segments" type="segment-list-type"/>
 	<xs:element name="segment" type="segment-type"/>
+	
 </xs:schema>
