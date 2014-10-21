@@ -1,5 +1,8 @@
 package com.akiradata.orca.capture;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import javafx.scene.Node;
 
 import org.controlsfx.dialog.Dialog;
@@ -15,12 +18,15 @@ public abstract class CaptureDevice {
 	
 	private State currentState = State.DEFAULT;
 	
+	private List<CaptureDeviceEventListener> listeners = new LinkedList<CaptureDeviceEventListener>();
+	
 	public abstract void configure();
 	
 	public abstract void capture();
 	
-	public abstract void addEventListener(CaptureDeviceEventListener listener);
-	
+	public final void addEventListener(CaptureDeviceEventListener listener) {
+		listeners.add(listener);
+	}	
 	public abstract void release();
 	
 	public final State getState(){
@@ -42,4 +48,18 @@ public abstract class CaptureDevice {
 	public abstract String getDriverVersion();
 	
 	public abstract Dialog createConfigurationDialog(Node owner);
+
+	public final void fireCaptureDeviceEvent(CaptureDeviceEvent e){
+		listeners.stream().forEach(listener -> {
+			switch(e.getEventType()){
+				case CAPTURE_STARTED : listener.captureStarted(e); break;
+				case PAGE_STARTED : listener.pageStarted(e); break;
+				case PAGE_COMPLETED : listener.pageCompleted(e); break;
+				case CAPTURE_COMPLETED : listener.captureCompleted(e); break;
+				case CAPTURE_EXCEPTION : listener.captureException(e); break;
+				case CONFIG_REQUESTED : listener.configurationRequested(e); break;
+				default:
+			}
+		});
+	}
 }

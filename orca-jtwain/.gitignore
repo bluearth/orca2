@@ -10,3 +10,4 @@ target/
 *.opensdf
 *.filters
 *.user
+*.log

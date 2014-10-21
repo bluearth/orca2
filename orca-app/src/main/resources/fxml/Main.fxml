@@ -22,9 +22,9 @@
 						<MenuItem fx:id="newProjectMni" text="_New..." accelerator="ctrl+n"/>
 						<MenuItem fx:id="openMenuItem" text="_Open..." accelerator="ctrl+o" />
 						<Menu id="openRecentMenu" text="Open _recent" disable="true" />
-						<MenuItem id="closeMenuItem" text="_Close" disable="true" />
+						<MenuItem fx:id="closeMni" text="_Close" disable="true" />
 						<SeparatorMenuItem />
-						<MenuItem id="exitMenuItem" text="_Quit" accelerator="ctrl+q" />
+						<MenuItem fx:id="exitMni" text="_Quit" accelerator="ctrl+q" />
 					</items>
 				</Menu>
 				<Menu id="editMenu" text="_Edit">

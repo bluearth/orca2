@@ -28,6 +28,7 @@ import com.akiradata.orca.capture.CaptureDevice;
 import com.akiradata.orca.capture.CaptureDeviceEvent;
 import com.akiradata.orca.capture.CaptureDeviceEventListener;
 import com.akiradata.orca.capture.CaptureDeviceSelectionDialog;
+import com.akiradata.orca.model.OrcaProjectType;
 
 public class MainPane extends VBox implements CaptureDeviceEventListener {
 
@@ -38,11 +39,15 @@ public class MainPane extends VBox implements CaptureDeviceEventListener {
 	@FXML private ToolBar mainToolBar;
 	@FXML private Button newProjectTlb;
 	@FXML private Button startCaptureTlb;
+	@FXML private MenuItem closeMni;
+	@FXML private MenuItem exitMni;
+	
 	private Dialog newProjectDialog;
 	private Dialog captureDeviceSelectionDialog;
 	Stage currentStage;
 	ObjectProperty<CaptureDevice> selectedDevice = new SimpleObjectProperty<CaptureDevice>();
-	
+	ObjectProperty<OrcaProjectType> project = new SimpleObjectProperty<OrcaProjectType>();
+
 	public MainPane(Stage s) {
 		super();
 		this.currentStage = s;
@@ -61,8 +66,29 @@ public class MainPane extends VBox implements CaptureDeviceEventListener {
 		this.newProjectMni.setOnAction(this::createNewProjectAction);
 		this.newProjectTlb.setOnAction(this::createNewProjectAction);
 		this.startCaptureTlb.setOnAction(this::startCaptureAction);
+		this.startCaptureTlb.disableProperty().bind(this.project.isNull());	
+		
+		this.project.addListener((obs, oldVal, newVal) -> {
+			if (obs.getValue() == null) {
+				this.currentStage.setTitle("Orca");
+			} else {
+				this.currentStage.setTitle(obs.getValue().getTitle() + " - Orca");
+			}
+		});		
+	}
+
+	@FXML
+	void closeProjectAction() {
+		// do the dirty stuff, then...
+		this.project.set(null);
 	}
 	
+	@FXML void exitAppAction(){
+		if (this.project != null){
+			closeProjectAction();
+		}
+	
+	}	
 	
 	@FXML 
 	private void startCaptureAction(ActionEvent e) {
@@ -106,9 +132,8 @@ public class MainPane extends VBox implements CaptureDeviceEventListener {
 					Dialogs.create()
 							.title("New Project")
 							.masthead("Problem creating new Project")
-							.message(
-									"Could not create project in "
-											+ projLocPath.getCanonicalPath())
+							.message("Could not create project in "
+										+ projLocPath.getCanonicalPath())
 							.showError();
 					return;
 				}
@@ -123,17 +148,14 @@ public class MainPane extends VBox implements CaptureDeviceEventListener {
 										+ projFile.getCanonicalPath()
 										+ " already exists. Confirm overwrite?")
 							.showConfirm();
-					if (response == Actions.OK) {
+					if (response == Actions.YES) {
 						log.debug("User confirms overwrite.");
 					} else {
 						return;
 					}
 				}
 
-				ProjectUtil.createProject(projName, projFile);
-				this.currentStage.setTitle(projName + " - "
-						+ this.currentStage.getTitle());
-
+				this.project.set(ProjectUtil.createProject(projName, projFile));
 			}
 		} catch (IOException | JAXBException ex) {
 			throw new ApplicationRuntimeException(ex);

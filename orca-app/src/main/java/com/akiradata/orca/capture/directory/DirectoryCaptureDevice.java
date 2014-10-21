@@ -8,21 +8,18 @@ import javafx.scene.Node;
 import org.controlsfx.dialog.Dialog;
 
 import com.akiradata.orca.capture.CaptureDevice;
-import com.akiradata.orca.capture.CaptureDeviceEventListener;
+import com.akiradata.orca.capture.CaptureDeviceEvent;
+import com.akiradata.orca.capture.CaptureDeviceEvent.Type;
 
 public class DirectoryCaptureDevice extends CaptureDevice {
 
 	File rootDirectory;
 	List<String> imageFormat;
 
+
 	@Override
 	public void capture() {
-
-	}
-
-	@Override
-	public void addEventListener(CaptureDeviceEventListener listener) {
-
+		fireCaptureDeviceEvent(new CaptureDeviceEvent(this, Type.CONFIG_REQUESTED));
 	}
 
 	@Override
@@ -53,8 +50,9 @@ public class DirectoryCaptureDevice extends CaptureDevice {
 
 	@Override
 	public Dialog createConfigurationDialog(Node owner) {
-		// TODO Auto-generated method stub
-		return null;
+		DirectoryCaptureDeviceConfigurationDialog d = new DirectoryCaptureDeviceConfigurationDialog(owner, "Capture device configuration");
+		d.setDevice(this);
+		return d;
 	}
 
 }
