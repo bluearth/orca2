@@ -1,16 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-	targetNamespace="http://www.akirdata.com/orca/orca-project"
-	xmlns="http://www.akirdata.com/orca/orca-project" 
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.akirdata.com/orca/orca-project" xmlns="http://www.akirdata.com/orca/orca-project"
 	elementFormDefault="qualified">
-		
+
 	<xs:complexType name="orca-project-type">
 		<xs:sequence>
-			<xs:element name="title" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="title" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element ref="items" minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
-		<xs:attribute name="version" type="xs:string" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="required" />
 	</xs:complexType>
 
-	<xs:element name="orca-project" type="orca-project-type"/>
+	<xs:complexType name="item-type">
+		<xs:sequence>
+			<xs:element ref="content" minOccurs="0" maxOccurs="1"/>
+			<xs:element ref="items" minOccurs="1" maxOccurs="1" />
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required" />
+		<xs:attribute name="name" type="xs:string" use="optional" />		
+	</xs:complexType>
+
+	<xs:complexType name="item-list-type">
+		<xs:choice>
+			<xs:element ref="item" minOccurs="0" maxOccurs="unbounded" />
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:simpleType name="content-type">
+		<xs:restriction base="xs:base64Binary"/>
+	</xs:simpleType>
 	
+	<xs:simpleType name="content-cache-type">
+		<xs:restriction base="xs:anyURI"/>
+	</xs:simpleType>
+
+	<xs:element name="orca-project" type="orca-project-type" />
+	<xs:element name="item" type="item-type" />
+	<xs:element name="items" type="item-list-type" />
+	<xs:element name="content" type="content-type"/>
+	<xs:element name="content-cache" type="content-cache-type"/>
 </xs:schema>
