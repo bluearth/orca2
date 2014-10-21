@@ -14,17 +14,24 @@
 
 	<xs:complexType name="item-type">
 		<xs:sequence>
-			<xs:element ref="content" minOccurs="0" maxOccurs="1"/>
-			<xs:element ref="items" minOccurs="1" maxOccurs="1" />
+			<xs:sequence minOccurs="1" maxOccurs="1">
+				<xs:choice>
+					<xs:element ref="content" minOccurs="0" maxOccurs="1"/>
+					<xs:element ref="content-cache" minOccurs="0" maxOccurs="1"/>
+				</xs:choice>
+				<xs:element ref="content-length" minOccurs="1" maxOccurs="1"></xs:element>
+				<xs:element ref="content-type" minOccurs="1" maxOccurs="1"></xs:element>
+			</xs:sequence>
+			<xs:element ref="items" minOccurs="0" maxOccurs="1" />
 		</xs:sequence>
 		<xs:attribute name="id" type="xs:ID" use="required" />
 		<xs:attribute name="name" type="xs:string" use="optional" />		
 	</xs:complexType>
 
 	<xs:complexType name="item-list-type">
-		<xs:choice>
+		<xs:sequence>
 			<xs:element ref="item" minOccurs="0" maxOccurs="unbounded" />
-		</xs:choice>
+		</xs:sequence>
 	</xs:complexType>
 
 	<xs:simpleType name="content-type">
@@ -34,10 +41,36 @@
 	<xs:simpleType name="content-cache-type">
 		<xs:restriction base="xs:anyURI"/>
 	</xs:simpleType>
-
+	
+	<xs:simpleType name="content-type-type">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>	
+	
+	<xs:simpleType name="content-length-type">
+		<xs:restriction base="xs:integer"/>
+	</xs:simpleType>	
+	
+	<xs:complexType name="segment-list-type">
+		<xs:sequence>
+			<xs:element ref="segment" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>	
+	</xs:complexType>
+	
+	<xs:complexType name="segment-type">
+		<xs:sequence>
+			
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+		<xs:attribute name="id" type="xs:ID" use="required"/>
+	</xs:complexType>
+	
 	<xs:element name="orca-project" type="orca-project-type" />
 	<xs:element name="item" type="item-type" />
 	<xs:element name="items" type="item-list-type" />
 	<xs:element name="content" type="content-type"/>
 	<xs:element name="content-cache" type="content-cache-type"/>
+	<xs:element name="content-type" type="content-type-type"/>
+	<xs:element name="content-length" type="content-length-type"/>
+	<xs:element name="segments" type="segment-list-type"/>
+	<xs:element name="segment" type="segment-type"/>
 </xs:schema>
