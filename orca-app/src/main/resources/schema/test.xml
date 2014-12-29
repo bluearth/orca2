@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orca-project id="project-01"
+	xmlns="http://www.akirdata.com/orca/orca-project" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.akirdata.com/orca/orca-project orca-project-0.2.xsd ">
+
+	<text>project-01</text>
+
+	<nodes>
+		<collection id="c1">	
+			<nodes>
+				<collection id="c11">
+					<nodes>
+						<raster-node  id="n111">
+							<content>file:///./data.tiff</content>
+						</raster-node>
+						<raster-node  id="n112">
+							<content>file:///./data.tiff</content>
+						</raster-node>
+					</nodes>
+				</collection>
+				<raster-node  id="n12">
+					<content>file:///./data.tiff</content>
+				</raster-node>
+			</nodes>		
+		</collection>
+		<collection id="c2">
+			<nodes>
+			</nodes>				
+		</collection>
+		<raster-node id="n3">
+			<content>file:///./data.tiff</content>
+		</raster-node>
+	</nodes>
+	
+	<segments>
+		<segment id="segment-01" node-ref="n111" x="1.7" y="2.8" width="200.0" height="300.0"/>
+		<segment id="segment-02" node-ref="n112" x="1.7" y="2.8" width="200.0" height="300.0"/>
+		<segment id="segment-03" node-ref="n112" x="1.7" y="10.3" width="200.0" height="300.0"/>
+		<segment id="segment-04" node-ref="n112" x="1.7" y="19.8" width="200.0" height="300.0"/>
+	</segments>
+	
+	<ocr-results>
+		<ocr-result id="ocr-result-01" segment-ref="segment-01">
+			<text>Aku suka kamu asal kamu jangan mainin aku</text>
+		</ocr-result>
+	</ocr-results>
+	
+</orca-project>
