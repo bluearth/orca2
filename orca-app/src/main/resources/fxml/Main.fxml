@@ -1,66 +1,281 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Scene?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.control.Button?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 
-
-<fx:root type="VBox" xmlns:fx="http://javafx.com/fxml"
-	prefHeight="500.0" prefWidth="700.0">
-	<children>
-		<MenuBar fx:id="mainMenuBar" xmlns:fx="http://javafx.com/fxml">
-			<menus>
-				<Menu id="fileMenu" text="_File">
-					<items>
-						<MenuItem fx:id="newProjectMni" text="_New..." accelerator="ctrl+n"/>
-						<MenuItem fx:id="openMenuItem" text="_Open..." accelerator="ctrl+o" />
-						<Menu id="openRecentMenu" text="Open _recent" disable="true" />
-						<MenuItem fx:id="closeMni" text="_Close" disable="true" />
-						<SeparatorMenuItem />
-						<MenuItem fx:id="exitMni" text="_Quit" accelerator="ctrl+q" />
-					</items>
-				</Menu>
-				<Menu id="editMenu" text="_Edit">
-					<items>
-						<MenuItem id="cutMenuItem" text="Cu_t" accelerator="ctrl+x"
-							disable="true" />
-						<MenuItem id="copyMenuItem" text="_Copy" accelerator="ctrl+c"
-							disable="true" />
-						<MenuItem id="pasteMenuItem" text="_Paste" accelerator="ctrl+v"
-							disable="true" />
-						<SeparatorMenuItem />
-						<MenuItem id="findMenuItem" text="_Find..." accelerator="ctrl+f" />
-					</items>
-				</Menu>
-				<Menu id="helpMenu" text="_Help">
-					<items>
-						<MenuItem id="openMenuItem" text="Open help..."
-							accelerator="F1" />
-						<SeparatorMenuItem />
-						<MenuItem id="aboutMenuItem" text="About..." />
-					</items>
-				</Menu>
-			</menus>
-		</MenuBar>
-		<BorderPane>
-			<top>
-				<ToolBar fx:id="mainToolBar" xmlns:fx="http://javafx.com/fxml">
-					<items>
-						<Button fx:id="newProjectTlb" text="New" onAction="#createNewProjectAction"/>
-						<Button id="openProjectTlb" text="Open"/>
-						<Button fx:id="startCaptureTlb" text="Capture"/>
-					</items>
-				</ToolBar>
-
-			</top>
-		</BorderPane>
-	</children>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" type="VBox">
+<!-- <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"> -->
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem fx:id="fileNewMni" mnemonicParsing="false" text="New..." />
+                  <MenuItem fx:id="fileOpenMni" mnemonicParsing="false" text="Open..." />
+                  <Menu disable="true" mnemonicParsing="false" text="Open recent" />
+                  <MenuItem fx:id="fileCloseMni" mnemonicParsing="false" text="Close" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <Menu mnemonicParsing="false" text="Connect to">
+                    <items>
+                      <MenuItem fx:id="connectToWorkspaceMni" mnemonicParsing="false" text="Workspace..." />
+                        <MenuItem fx:id="connectToCloudMni" mnemonicParsing="false" text="Cloud provider..." />
+                    </items>
+                  </Menu>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <Menu mnemonicParsing="false" text="Export">
+                    <items>
+                      <MenuItem fx:id="exportProjectMni" mnemonicParsing="false" text="Project..." />
+                        <MenuItem fx:id="exportSelectionMni" mnemonicParsing="false" text="Selection..." />
+                    </items>
+                  </Menu>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="appExitMni" mnemonicParsing="false" text="Exit" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem fx:id="cutMni" disable="true" mnemonicParsing="false" text="Cut" />
+                  <MenuItem fx:id="copyMni" disable="true" mnemonicParsing="false" text="Copy" />
+                  <MenuItem fx:id="pasteMni" disable="true" mnemonicParsing="false" text="Paste" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <Menu mnemonicParsing="false" text="Selection">
+                     <items>
+                        <MenuItem fx:id="saveSelectionMni" disable="true" mnemonicParsing="false" text="Save selection..." />
+                        <MenuItem fx:id="loadSelectionMni" mnemonicParsing="false" text="Load selection..." />
+                     </items>
+                  </Menu>
+               </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="View">
+            <items>
+              <MenuItem fx:id="viewZoomInMni" mnemonicParsing="false" text="Zoom in" />
+                  <MenuItem fx:id="viewZoomOutMni" mnemonicParsing="false" text="Zoom out" />
+                  <MenuItem fx:id="viewZoomResetMni" mnemonicParsing="false" text="Reset" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Tools">
+              <items>
+                <MenuItem fx:id="modTessaractRunOCRMni" mnemonicParsing="false" text="OCR" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+              <items>
+                <MenuItem fx:id="openHelpMni" mnemonicParsing="false" text="Open help..." />
+                  <MenuItem fx:id="openAboutBoxMni" mnemonicParsing="false" text="About Orca..." />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <SplitPane dividerPositions="0.2554858934169279, 0.6818181818181818" VBox.vgrow="ALWAYS">
+         <items>
+            <VBox>
+               <children>
+                  <ToolBar VBox.vgrow="NEVER">
+                    <items>
+                      <Button fx:id="createCollectionBtn" mnemonicParsing="false">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/16px/folder.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Create collection" />
+                           </tooltip></Button>
+                        <Button fx:id="deleteNodeBtn" mnemonicParsing="false">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/16px/remove2.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Remove selection" />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="createFromCaptureDeviceBtn"  mnemonicParsing="false">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/16px/storage.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Capture image" />
+                           </tooltip>
+                        </Button>
+                        <Button fx:id="refreshBtn" mnemonicParsing="false">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/16px/loop.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Refresh" />
+                           </tooltip>
+                        </Button>
+                    </items>
+                  </ToolBar>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+                     <content>
+                        <TreeView fx:id="projectTreeView" editable="true">
+						</TreeView>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+               <content>
+                  <FlowPane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="187.0" prefWidth="121.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../sample/page/01.png" />
+                                 </image>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <FlowPane.margin>
+                              <Insets />
+                           </FlowPane.margin>
+                        </VBox>
+                        <VBox prefHeight="187.0" prefWidth="121.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <image>
+                                    <Image url="@../sample/page/02.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="187.0" prefWidth="121.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <image>
+                                    <Image url="@../sample/page/03.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                        </VBox>
+                        <VBox prefHeight="187.0" prefWidth="121.0">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <image>
+                                    <Image url="@../sample/page/04.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </FlowPane>
+               </content>
+            </ScrollPane>
+            <Accordion>
+              <panes>
+                <TitledPane fx:id="propertyTlp" alignment="CENTER_RIGHT" text="Properties">
+                     <content>
+                        <ScrollPane>
+                           <content>
+                              <VBox fx:id="propertyPane">
+                                 <children>
+                                    <GridPane>
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="70.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="130.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Label text="Node ID" />
+                                          <Label text="Label" GridPane.rowIndex="1" />
+                                          <Label text="Source" GridPane.rowIndex="2" />
+                                          <TextField GridPane.columnIndex="1" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </GridPane>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                </TitledPane>
+                <TitledPane fx:id="structureTlp" alignment="CENTER_RIGHT" text="Structure">
+                  <content>
+                    <AnchorPane fx:id="structurePane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </TitledPane>
+                <TitledPane fx:id="ocrResultTlp" alignment="CENTER_RIGHT" text="OCR">
+                  <content>
+                    <AnchorPane fx:id="ocrResultPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <Label layoutX="73.0" layoutY="90.0" text="Label" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </TitledPane>
+              </panes>
+            </Accordion>
+         </items>
+      </SplitPane>
+      <HBox fx:id="statusBar" VBox.vgrow="NEVER">
+         <children>
+            <Label text="Ready" />
+         </children>
+      </HBox>
+   </children>
+<!-- </VBox> -->
 </fx:root>
 
