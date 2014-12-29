@@ -1,5 +1,7 @@
 package com.akiradata.orca.capture;
 
+import java.nio.Buffer;
+
 public interface CaptureDeviceEventListener {
 
 	void captureStarted(CaptureDeviceEvent e);
@@ -13,5 +15,7 @@ public interface CaptureDeviceEventListener {
 	void captureException(CaptureDeviceEvent e);
 
 	void configurationRequested(CaptureDeviceEvent e);
+	
+	<T extends Buffer> void dataReady(DataReadyEvent<T> e);
 	
 }

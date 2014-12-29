@@ -1,14 +1,19 @@
 package com.akiradata.orca.capture;
 
+import java.nio.Buffer;
 import java.util.LinkedList;
 import java.util.List;
 
 import javafx.scene.Node;
 
 import org.controlsfx.dialog.Dialog;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class CaptureDevice {
 
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	public enum State {
 		  DEFAULT
 		, READY
@@ -22,7 +27,7 @@ public abstract class CaptureDevice {
 	
 	public abstract void configure();
 	
-	public abstract void capture();
+	public abstract void capture() throws CaptureDeviceException;
 	
 	public final void addEventListener(CaptureDeviceEventListener listener) {
 		listeners.add(listener);
@@ -50,6 +55,7 @@ public abstract class CaptureDevice {
 	public abstract Dialog createConfigurationDialog(Node owner);
 
 	public final void fireCaptureDeviceEvent(CaptureDeviceEvent e){
+		log.debug("Notifiying listeners : " + e);
 		listeners.stream().forEach(listener -> {
 			switch(e.getEventType()){
 				case CAPTURE_STARTED : listener.captureStarted(e); break;
@@ -58,6 +64,9 @@ public abstract class CaptureDevice {
 				case CAPTURE_COMPLETED : listener.captureCompleted(e); break;
 				case CAPTURE_EXCEPTION : listener.captureException(e); break;
 				case CONFIG_REQUESTED : listener.configurationRequested(e); break;
+				case DATA_READY :  
+					listener.dataReady((DataReadyEvent<? extends Buffer>) e); 
+					break;
 				default:
 			}
 		});
