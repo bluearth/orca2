@@ -10,26 +10,29 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.stream.StreamSource;
 
-import com.akiradata.orca.model.ObjectFactory;
-import com.akiradata.orca.model.OrcaProjectType;
+import com.akiradata.orca.jaxb.model.ObjectFactory;
+import com.akiradata.orca.jaxb.model.OrcaProjectType;
+import com.akiradata.orca.projectmodel.NodeFactory;
+import com.akiradata.orca.projectmodel.Project;
 
 public class ProjectUtil {
 
-	public static OrcaProjectType createProject(String name, File location) throws IOException, JAXBException{
+	public static Project createProject(String name, File location) throws IOException, JAXBException{
 		
 		location.createNewFile();
-		ObjectFactory of = new ObjectFactory();
 		
+		ObjectFactory of = new ObjectFactory();		
 		OrcaProjectType proj = of.createOrcaProjectType();
-		proj.setTitle(name);
-		proj.setVersion("0.7");
+		proj.setText(name);
 		
 		JAXBElement<OrcaProjectType> rootElem = of.createOrcaProject(proj);
 		JAXBContext jaxbContext = JAXBContext.newInstance(ObjectFactory.class);
 		Marshaller m = jaxbContext.createMarshaller();
 		m.marshal(rootElem, location);
 		
-		return proj;		
+		Project projectObj = NodeFactory.createProjectNode();
+		projectObj.setText(name);
+		return projectObj;		
 	}
 
 	public static void closeProject(OrcaProjectType project) {
